@@ -1,5 +1,37 @@
-#zapusk
+# Версия для старых докеров
+#version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: containerbackend1
+    restart: unless-stopped
+    networks:
+      - efmobilenetwork
+    expose:
+      - "8080"
 
 
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx-container2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - efmobilenetwork
 
+#networks:
+#  efmobilenetwork:
+#    driver: bridge
+#    name: efmobilenetwork
 
+#пока я создал сеть в ручную
+networks:
+  efmobilenetwork:
+    external: true
