@@ -1,13 +1,13 @@
 FROM python:3.9-slim
+#add user
+RUN groupadd -r efmobile && useradd -r -g efmobile efmobileuser
 
-# Копируем скрипт сервера в контейнер
 COPY app.py /app/app.py
 
-# Указываем рабочую директорию
 WORKDIR /app
+#смена юзера
+USER efmobileuser
 
-# Открываем порт 8080 внутри Docker-сети
 EXPOSE 8080
 
-# Запускаем сервер при старте контейнера
-CMD ["python", "app.py"]
+CMD ["python", "app:app", "--host", "0.0.0.0", "--port", "8080"]
