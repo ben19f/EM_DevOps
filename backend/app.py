@@ -11,7 +11,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.send_error(404, "Not Found")
 
 if __name__ == '__main__':
-    server_address = ('localhost', 8080)
+    server_address = ('0.0.0.0', 8080)
     httpd = HTTPServer(server_address, SimpleHandler)
     # print("Server running on port 8080...")
     httpd.serve_forever()
