@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # Копируем скрипт сервера в контейнер
-COPY server.py /app/server.py
+COPY app.py /app/app.py
 
 # Указываем рабочую директорию
 WORKDIR /app
@@ -10,4 +10,4 @@ WORKDIR /app
 EXPOSE 8080
 
 # Запускаем сервер при старте контейнера
-CMD ["python", "server.py"]
+CMD ["python", "app.py"]
