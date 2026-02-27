@@ -11,12 +11,12 @@ services:
       - efmobilenetwork
     expose:
       - "8080"
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+#    healthcheck:
+#      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 40s
 
 
   nginx:
@@ -32,12 +32,12 @@ services:
     networks:
       - efmobilenetwork
 
-#networks:
-#  efmobilenetwork:
-#    driver: bridge
-#    name: efmobilenetwork
-
-#пока я создал сеть в ручную
 networks:
   efmobilenetwork:
-    external: true
+    driver: bridge
+    name: efmobilenetwork
+
+# если сеть уже существует
+#networks:
+#  efmobilenetwork:
+#    external: true
